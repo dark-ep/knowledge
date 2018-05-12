@@ -35,7 +35,7 @@
     > ![info][info] 应用默认安装到/usr/java
 
 7.  验证安装结果<br>
-    ![第7步](images/03_7_1.png)
+    ![第7步](images/03_7_1.png)<br>
 8.  设置环境变量<br>
 
     ```命令
@@ -63,7 +63,7 @@
     > env|grep java
     ```
 
-    ![第10步](images/03_10_1.png)
+    ![第10步](images/03_10_1.png)<br>
 
 [jdk下载地址]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
