@@ -16,7 +16,7 @@
     > ifconfig
     ```
 
-    ![第3步](images/01_3_1.png)
+    ![第3步](images/01_3_1.png)<br>
 
 4.  修改配置文件ifcfg-ens32<br>
 
@@ -49,8 +49,8 @@
     DNS1=192.168.3.1
     ```
 
-    ![第4步-1](images/01_4_1.png)
-    ![第4步-2](images/01_4_2.png)
+    ![第4步-1](images/01_4_1.png)<br>
+    ![第4步-2](images/01_4_2.png)<br>
 
 5.  重启网卡
 
