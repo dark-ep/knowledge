@@ -6,7 +6,7 @@
 
     > [下载 git2.17.0 地址][git下载地址]
 
-    ![第1步](images/05_1_1.png)
+    ![第1步](images/05_1_1.png)<br>
 
 2.  创建software文件夹<br>
 
@@ -81,6 +81,6 @@
     > git --version
     ```
 
-    ![第12步](images/05_12_1.png)
+    ![第12步](images/05_12_1.png)<br>
 
 [git下载地址]: https://mirrors.edge.kernel.org/pub/software/scm/git/
