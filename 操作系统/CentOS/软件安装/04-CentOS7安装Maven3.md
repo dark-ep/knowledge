@@ -58,7 +58,7 @@
     > mvn -version
     ```
 
-    ![第9步](images/04_9_1.png)
+    ![第9步](images/04_9_1.png)<br>
 
 10. 修改maven的repository本地存放路径并保存<br>
 
@@ -70,6 +70,6 @@
     <localRepository>/usr/local/maven/repo</localRepository>
     ```
 
-    ![第10步](images/04_10_1.png)
+    ![第10步](images/04_10_1.png)<br>
 
 [maven下载地址]: https://maven.apache.org/download.cgi
