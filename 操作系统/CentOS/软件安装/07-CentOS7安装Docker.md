@@ -35,10 +35,7 @@
     > sudo yum-config-manager --enable docker-ce-edge
     ```
 
-    > ![info][info]
-    > 最新版本的Docker CE，用docker-ce-edge
-    > 测试版本的Docker CE，用docker-ce-test
-    > 默认版本为docker-ce-stable
+    > ![info][info] 最新版本的Docker CE，用docker-ce-edge;测试版本的Docker CE，用docker-ce-test;默认版本为docker-ce-stable;
 
 5.  安装Docker<br>
 
@@ -105,7 +102,7 @@
 
 11. 添加内核参数<br>
 
-    > ![info][info] 执行docker info出现告警时进行操作
+    > ![info][info] 执行docker info出现告警时进行操作<br>
     > ![第11步](images/07_11_1.png)<br>
 
     a. 修改文件sysctl.conf<br>
