@@ -49,6 +49,8 @@
     external_url 'http://ep.cn/gitlab'
     ```
 
+    ![第5步-a](images/02_5_a_1.png)<br>
+
     b. Docker重启gitlab<br>
 
     ```命令
