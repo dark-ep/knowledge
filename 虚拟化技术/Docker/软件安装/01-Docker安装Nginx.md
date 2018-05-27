@@ -1,4 +1,4 @@
-# Docker 安装 Gitlab-ce-zh
+# Docker 安装 Nginx
 
 ## 软件安装
 
