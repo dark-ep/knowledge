@@ -101,7 +101,6 @@
 
     ![第8步](images/03_8_1.png)<br>
 
-
 9.  拷贝master.conf为slave.conf<br>
 
     ```命令
@@ -137,7 +136,6 @@
 
 12. 打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
-
 
     ```命令
     > sudo firewall-cmd --zone=public --list-all
