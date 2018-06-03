@@ -79,7 +79,6 @@
 4.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
-
     ```命令
     > sudo firewall-cmd --zone=public --list-all
     ```
