@@ -60,7 +60,7 @@
 
     > ![info][info] 由于centos7可能开启SELinux,需要使用命令增加相关路径文件的权限
 
-5.  Mysql管理及设置
+5.  Mysql管理及设置<br>
     a. Docker链接mysql<br>
 
     ```命令
