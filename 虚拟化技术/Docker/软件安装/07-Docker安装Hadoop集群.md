@@ -25,17 +25,17 @@
 
     b. 编写Docker构建内容<br>
 
-    > ![info][info] [Dockerfile](/files/07/Dockerfile)脚本说明
-    > 1.依赖ubuntu:18.04
-    > 2.使用root用户
-    > 3.安装必要工具(ssh及jdk8)
-    > 4.从宿主机器拷贝hadoop-2.7.6.tar.gz(需要在编译前提前准备好文件)并自动解压，同时做关联操作
-    > 5.设置环境变量
-    > 6.设置无秘登录
-    > 7.从宿主机器拷贝配置预设好的必要配置到特定目录(slaves文件要提前修改好)
-    > 8.设置启动shell脚本执行权限
-    > 9.设置hadoop的namenode
-    > 10.启动后预初始化执行启动ssh
+    > ![info][info] [Dockerfile](files/07/Dockerfile)脚本说明<br>
+    > 1.依赖ubuntu:18.04<br>
+    > 2.使用root用户<br>
+    > 3.安装必要工具(ssh及jdk8)<br>
+    > 4.从宿主机器拷贝hadoop-2.7.6.tar.gz(需要在编译前提前准备好文件)并自动解压，同时做关联操作<br>
+    > 5.设置环境变量<br>
+    > 6.设置无秘登录<br>
+    > 7.从宿主机器拷贝配置预设好的必要配置到特定目录(slaves文件要提前修改好)<br>
+    > 8.设置启动shell脚本执行权限<br>
+    > 9.设置hadoop的namenode<br>
+    > 10.启动后预初始化执行启动ssh<br>
 
 4.  补充Dockerfile编译脚本相关文件及使用配置<br>
     a. 下载hadoop-2.7.6.tar.gz<br>
@@ -44,17 +44,17 @@
 
     b. 拷贝文件到特定目录<br>
 
-    > [build-image.sh](files/07/build-image.sh) -> /home/docker/hadoop/
-    > [start-container.sh](files/07/start-container.sh) -> /home/docker/hadoop/
-    > [config/core-site.xml](files/07/config/core-site.xml) -> /home/docker/hadoop/config/
-    > [config/hadoop-env.sh](files/07/config/hadoop-env.sh) -> /home/docker/hadoop/config/
-    > [config/hdfs-site.xml](files/07/config/hdfs-site.xml) -> /home/docker/hadoop/config/
-    > [config/mapred-site.xml](files/07/config/mapred-site.xml) -> /home/docker/hadoop/config/
-    > [config/run-wordcount.sh](files/07/config/run-wordcount.sh) -> /home/docker/hadoop/config/
-    > [config/slaves](files/07/config/slaves) -> /home/docker/hadoop/config/
-    > [config/ssh_config](files/07/config/ssh_config) -> /home/docker/hadoop/config/
-    > [config/start-hadoop.sh](files/07/config/start-hadoop.sh) -> /home/docker/hadoop/config/
-    > [config/yarn-site.xml](files/07/config/yarn-site.xml) -> /home/docker/hadoop/config/
+    > [build-image.sh](files/07/build-image.sh) -> /home/docker/hadoop/<br>
+    > [start-container.sh](files/07/start-container.sh) -> /home/docker/hadoop/<br>
+    > [config/core-site.xml](files/07/config/core-site.xml) -> /home/docker/hadoop/config/<br>
+    > [config/hadoop-env.sh](files/07/config/hadoop-env.sh) -> /home/docker/hadoop/config/<br>
+    > [config/hdfs-site.xml](files/07/config/hdfs-site.xml) -> /home/docker/hadoop/config/<br>
+    > [config/mapred-site.xml](files/07/config/mapred-site.xml) -> /home/docker/hadoop/config/<br>
+    > [config/run-wordcount.sh](files/07/config/run-wordcount.sh) -> /home/docker/hadoop/config/<br>
+    > [config/slaves](files/07/config/slaves) -> /home/docker/hadoop/config/<br>
+    > [config/ssh_config](files/07/config/ssh_config) -> /home/docker/hadoop/config/<br>
+    > [config/start-hadoop.sh](files/07/config/start-hadoop.sh) -> /home/docker/hadoop/config/<br>
+    > [config/yarn-site.xml](files/07/config/yarn-site.xml) -> /home/docker/hadoop/config/<br>
 
     c. 设置执行权限<br>
 
