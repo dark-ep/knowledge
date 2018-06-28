@@ -32,6 +32,7 @@
         container_name: zk1
         restart: unless-stopped
         hostname: zk1
+        network_mode: bridge
         ports:
           - 22181:2181
         environment:
@@ -43,6 +44,7 @@
         container_name: zk2
         restart: unless-stopped
         hostname: zk2
+        network_mode: bridge
         ports:
           - 22182:2181
         environment:
@@ -54,6 +56,7 @@
         container_name: zk3
         restart: unless-stopped
         hostname: zk3
+        network_mode: bridge
         ports:
           - 22183:2181
         environment:
