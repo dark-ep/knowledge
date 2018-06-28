@@ -66,7 +66,8 @@
     a. 执行构建脚本<br>
 
     ```命令
-    > /home/docker/hadoop/build-image.sh
+    > cd /home/docker/hadoop/
+    > ./build-image.sh
     ```
 
     b. 验证构建结果<br>
@@ -95,7 +96,8 @@
     c. 运行hadoop集群<br>
 
     ```命令
-    > /home/docker/hadoop/start-container.sh
+    > cd /home/docker/hadoop/
+    > ./start-container.sh
     ```
 
     ![第6步-c-1](images/07_6_c_1.png)<br>
