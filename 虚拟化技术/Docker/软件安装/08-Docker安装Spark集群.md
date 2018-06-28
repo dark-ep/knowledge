@@ -140,6 +140,12 @@
     ![第6步-d-4](images/08_6_d_4.png)<br>
     ![第6步-d-5](images/08_6_d_5.png)<br>
     ![第6步-d-6](images/08_6_d_6.png)<br>
+    
+    > 在spark-master容器中执行spark-shell,可用scala语言进行任务操作<br>
+    > 可用[访问Spark 任务页面:\[Your IP Address\]:4040/](http://ep.cn:4040)查看任务信息
+    
+    ![第6步-d-7](images/08_6_d_7.png)<br>
+    ![第6步-d-8](images/08_6_d_8.png)<br>
 
 7.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
