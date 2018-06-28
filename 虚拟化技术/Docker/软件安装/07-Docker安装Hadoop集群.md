@@ -123,8 +123,8 @@
     ![第6步-d-2](images/07_6_d_2.png)<br>
     ![第6步-d-3](images/07_6_d_3.png)<br>
 
-    > [访问Name Node页面:\[Your IP Address\]:50070/](http://ep.cn:50070)
-    > [访问Resource Manager页面:\[Your IP Address\]:8088/](http://ep.cn:8088)
+    > [访问Name Node页面:\[Your IP Address\]:50070/](http://ep.cn:50070)<br>
+    > [访问Resource Manager页面:\[Your IP Address\]:8088/](http://ep.cn:8088)<br>
 
     ![第6步-d-4](images/07_6_d_4.png)<br>
     ![第6步-d-5](images/07_6_d_5.png)<br>
