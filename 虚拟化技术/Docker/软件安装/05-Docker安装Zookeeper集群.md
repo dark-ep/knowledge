@@ -69,7 +69,7 @@
 4.  Docker创建归属Zookeeper使用的网络<br>
 
     ```命令
-    > docker network create zookeeper
+    > docker network create zk-net
     ```
 
 5.  运行DockerCompose脚本<br>
