@@ -32,7 +32,6 @@
         container_name: zk1
         restart: unless-stopped
         hostname: zk1
-        network_mode: bridge
         ports:
           - 22181:2181
         environment:
@@ -44,7 +43,6 @@
         container_name: zk2
         restart: unless-stopped
         hostname: zk2
-        network_mode: bridge
         ports:
           - 22182:2181
         environment:
@@ -56,22 +54,31 @@
         container_name: zk3
         restart: unless-stopped
         hostname: zk3
-        network_mode: bridge
         ports:
           - 22183:2181
         environment:
           ZOO_MY_ID: 3
           ZOO_SERVERS: server.1=zk1:22888:23888 server.2=zk2:22888:23888 server.3=0.0.0.0:22888:23888
+          
+    networks:
+      default:
+        external:
+          name: zk-net
     ```
 
-4.  运行DockerCompose脚本<br>
+4.  Docker创建归属Zookeeper使用的网络<br>
 
+    ```命令
+    > docker network create zookeeper
+    ```
+
+5.  运行DockerCompose脚本<br>
 
     ```命令
     > docker-compose -f /home/docker/zk/script/dc-zk.yml up -d
     ```
 
-5.  打开防火墙端口<br>
+6.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
