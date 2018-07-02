@@ -16,7 +16,7 @@
     > mkdir -p /home/docker/spark
     ```
     
-3.  编写Dockerfile创建Hadoop镜像脚本<br>
+3.  编写Dockerfile创建Spark镜像脚本<br>
     a. 创建Dockerfile文件<br>
 
     ```命令
