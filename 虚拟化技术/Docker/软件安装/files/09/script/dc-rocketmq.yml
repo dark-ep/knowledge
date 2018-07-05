@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+    rocketmq-namesrv:
+        container_name: rocketmq-namesrv
+        image: local/rocketmq-namesrv:4.2.0
+        volumes:
+            - /home/docker/rocketmq/namesrv/logs:/opt/logs
+            - /home/docker/rocketmq/namesrv/store:/opt/store
+            - /etc/localtime:/etc/localtime:ro
+        restart: unless-stopped
+        hostname: rocketmq-namesrv
+        ports:
+            - 9876:9876
+
+    rocketmq-broker-a:
+        container_name: rocketmq-broker-a
+        image: local/rocketmq-broker:4.2.0
+        volumes:
+            - /home/docker/rocketmq/broker-a/logs:/opt/logs
+            - /home/docker/rocketmq/broker-a/store:/opt/store
+            - /home/docker/rocketmq/broker-a/conf/broker.properties:/opt/rocketmq/conf/broker.properties
+            - /etc/localtime:/etc/localtime:ro
+        restart: unless-stopped
+        hostname: rocketmq-broker-a
+        environment:
+            NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
+            MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+
+    rocketmq-broker-a-s:
+        container_name: rocketmq-broker-a-s
+        image: local/rocketmq-broker:4.2.0
+        volumes:
+            - /home/docker/rocketmq/broker-a-s/logs:/opt/logs
+            - /home/docker/rocketmq/broker-a-s/store:/opt/store
+            - /home/docker/rocketmq/broker-a-s/conf/broker.properties:/opt/rocketmq/conf/broker.properties
+            - /etc/localtime:/etc/localtime:ro
+        restart: unless-stopped
+        hostname: rocketmq-broker-a-s
+        environment:
+            NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
+            MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+
+    rocketmq-broker-b:
+        container_name: rocketmq-broker-b
+        image: local/rocketmq-broker:4.2.0
+        volumes:
+            - /home/docker/rocketmq/broker-b/logs:/opt/logs
+            - /home/docker/rocketmq/broker-b/store:/opt/store
+            - /home/docker/rocketmq/broker-b/conf/broker.properties:/opt/rocketmq/conf/broker.properties
+            - /etc/localtime:/etc/localtime:ro
+        restart: unless-stopped
+        hostname: rocketmq-broker-b
+        environment:
+            NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
+            MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+
+    rocketmq-broker-b-s:
+        container_name: rocketmq-broker-b-s
+        image: local/rocketmq-broker:4.2.0
+        volumes:
+            - /home/docker/rocketmq/broker-b-s/logs:/opt/logs
+            - /home/docker/rocketmq/broker-b-s/store:/opt/store
+            - /home/docker/rocketmq/broker-b-s/conf/broker.properties:/opt/rocketmq/conf/broker.properties
+            - /etc/localtime:/etc/localtime:ro
+        restart: unless-stopped
+        hostname: rocketmq-broker-b-s
+        environment:
+            NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
+            MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+
+    rocketmq-console:
+        container_name: rocketmq-console
+        image: local/rocketmq-console:1.0.0
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+        restart: unless-stopped
+        hostname: rocketmq-console
+        ports:
+            - 18080:8080
+        environment:
+            JAVA_OPTS: -Drocketmq.config.namesrvAddr=rocketmq-namesrv:9876
+
+networks:
+    default:
+        external:
+            name: rocketmq-net
