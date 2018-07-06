@@ -32,27 +32,25 @@
     > docker cp nginx:/usr/share/nginx/html/50x.html /home/docker/nginx/content
     ```
 
-5.  Docker删除默认Nginx<br>
+5.  Docker运行Nginx<br>
+    a. 拷贝运行脚本到特定目录<br>
+
+    > [start-container.sh](files/01/start-container.sh) -> /home/docker/nginx/<br>
+
+    b. 设置执行权限<br>
 
     ```命令
-    > docker rm -f nginx
+    > chmod +x /home/docker/nginx/*.sh
     ```
 
-6.  Docker运行Nginx(使用本地网络)
+    c. 运行Nginx<br>
 
     ```命令
-    > docker run -d \
-                 --network host \
-                 --name nginx \
-                 --restart unless-stopped \
-                 -v /home/docker/nginx/etc/nginx.conf:/etc/nginx/nginx.conf:ro \
-                 -v /home/docker/nginx/etc/conf.d:/etc/nginx/conf.d \
-                 -v /home/docker/nginx/log:/var/log/nginx \
-                 -v /home/docker/nginx/content:/usr/share/nginx/html:ro \
-                 nginx
+    > cd /home/docker/nginx/
+    > ./start-container.sh
     ```
 
-7.  打开防火墙端口<br>
+6.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
