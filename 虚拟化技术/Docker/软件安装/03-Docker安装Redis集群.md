@@ -56,16 +56,21 @@
     > ![info][info] 增加密码，访问Redis时需要上送密码，可使Redis更加安全
 
 6.  Docker运行Redis的master<br>
+    a. 拷贝运行脚本到特定目录<br>
+
+    > [start-container-master.sh](files/03/start-container-master.sh) -> /home/docker/redis/<br>
+
+    b. 设置执行权限<br>
 
     ```命令
-    > docker run -d \
-                 -p 6379:6379 \
-                 --name redis-master \
-                 --restart unless-stopped \
-                 -v /home/docker/redis/data/master/:/data \
-                 -v /home/docker/redis/etc/master.conf:/etc/redis/redis.conf \
-                 redis \
-                 redis-server /etc/redis/redis.conf
+    > chmod +x /home/docker/redis/*.sh
+    ```
+
+    c. 运行Redis的master<br>
+
+    ```命令
+    > cd /home/docker/redis/
+    > ./start-container-master.sh
     ```
 
 7.  打开防火墙端口<br>
@@ -93,21 +98,13 @@
     > sudo firewall-cmd --zone=public --list-all
     ```
 
-8.  Docker查看master的IP地址<br>
-
-    ```命令
-    > docker inspect --format '{{println .NetworkSettings.IPAddress}}' redis-master
-    ```
-
-    ![第8步](images/03_8_1.png)<br>
-
-9.  拷贝master.conf为slave.conf<br>
+8.  拷贝master.conf为slave.conf<br>
 
     ```命令
     > cp /home/docker/redis/etc/master.conf /home/docker/redis/etc/slave.conf
     ```
 
-10. 修改slave.conf<br>
+9. 修改slave.conf<br>
 
     ```命令
     > vim /home/docker/redis/etc/slave.conf
@@ -121,20 +118,25 @@
 
     ![第10步-b](images/03_10_b_1.png)<br>
 
-11. Docker运行Redis的slave<br>
+10. Docker运行Redis的slave<br>
+    a. 拷贝运行脚本到特定目录<br>
+
+    > [start-container-slave.sh](files/03/start-container-slave.sh) -> /home/docker/redis/<br>
+
+    b. 设置执行权限<br>
 
     ```命令
-    > docker run -d \
-                 -p 6380:6379 \
-                 --name redis-slave1 \
-                 --restart unless-stopped \
-                 -v /home/docker/redis/data/slave1/:/data \
-                 -v /home/docker/redis/etc/slave.conf:/etc/redis/redis.conf \
-                 redis \
-                 redis-server /etc/redis/redis.conf
+    > chmod +x /home/docker/redis/*.sh
     ```
 
-12. 打开防火墙端口<br>
+    c. 运行Redis的slave<br>
+
+    ```命令
+    > cd /home/docker/redis/
+    > ./start-container-slave.sh
+    ```
+
+11. 打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
