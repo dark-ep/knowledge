@@ -17,68 +17,32 @@
     > mkdir -p /home/docker/zk/script
     ```
 
-3.  编写DockerCompose创建Zookeeper集群脚本<br>
+3.  Docker创建归属Zookeeper使用的网络<br>
 
     ```命令
-    > vim /home/docker/zk/script/dc-zk.yml
+    > docker network create -d bridge zk-net
     ```
 
-    ```内容
-    version: '3'
+4.  Docker运行Zookeeper集群<br>
+    a. 拷贝运行脚本到特定目录<br>
 
-    services:
-      zk1:
-        image: zookeeper
-        container_name: zk1
-        restart: unless-stopped
-        hostname: zk1
-        ports:
-          - 22181:2181
-        environment:
-          ZOO_MY_ID: 1
-          ZOO_SERVERS: server.1=0.0.0.0:22888:23888 server.2=zk2:22888:23888 server.3=zk3:22888:23888
+    > [start-container.sh](files/05/start-container.sh) -> /home/docker/zk/<br>
+    > [script/dc-zk.yml](files/05/script/dc-zk.yml) -> /home/docker/zk/script/<br>
 
-      zk2:
-        image: zookeeper
-        container_name: zk2
-        restart: unless-stopped
-        hostname: zk2
-        ports:
-          - 22182:2181
-        environment:
-          ZOO_MY_ID: 2
-          ZOO_SERVERS: server.1=zk1:22888:23888 server.2=0.0.0.0:22888:23888 server.3=zk3:22888:23888
-
-      zk3:
-        image: zookeeper
-        container_name: zk3
-        restart: unless-stopped
-        hostname: zk3
-        ports:
-          - 22183:2181
-        environment:
-          ZOO_MY_ID: 3
-          ZOO_SERVERS: server.1=zk1:22888:23888 server.2=zk2:22888:23888 server.3=0.0.0.0:22888:23888
-          
-    networks:
-      default:
-        external:
-          name: zk-net
-    ```
-
-4.  Docker创建归属Zookeeper使用的网络<br>
+    b. 设置执行权限<br>
 
     ```命令
-    > docker network create zk-net
+    > chmod +x /home/docker/zk/*.sh
     ```
 
-5.  运行DockerCompose脚本<br>
+    c. 运行Zookeeper集群<br>
 
     ```命令
-    > docker-compose -f /home/docker/zk/script/dc-zk.yml up -d
+    > cd /home/docker/zk/
+    > ./start-container.sh
     ```
 
-6.  打开防火墙端口<br>
+5.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
