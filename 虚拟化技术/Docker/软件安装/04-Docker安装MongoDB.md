@@ -11,15 +11,21 @@
     > ![info][info] [mongo说明地址][mongo地址]
 
 2.  Docker运行MongoDB<br>
+    a. 拷贝运行脚本到特定目录<br>
+
+    > [start-container.sh](files/04/start-container.sh) -> /home/docker/mongo/<br>
+
+    b. 设置执行权限<br>
 
     ```命令
-    > docker run -d \
-                 -p 27017:27017 \
-                 --name mongo \
-                 --restart unless-stopped \
-                 -v /home/docker/mongo/data:/data/db \
-                 mongo \
-                 --auth
+    > chmod +x /home/docker/mongo/*.sh
+    ```
+
+    c. 运行MongoDB<br>
+
+    ```命令
+    > cd /home/docker/mongo/
+    > ./start-container.sh
     ```
 
 3.  MongoDB用户管理<br>
