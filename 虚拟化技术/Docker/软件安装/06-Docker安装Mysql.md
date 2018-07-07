@@ -39,19 +39,25 @@
 
     > ![info][info] mysql8默认使用caching_sha2_password
 
-
 4.  Docker运行Mysql<br>
+    a. 拷贝运行脚本到特定目录<br>
+
+    > [start-container.sh](files/06/start-container.sh) -> /home/docker/mysql/<br>
+
+    b. 设置执行权限<br>
 
     ```命令
-    > docker run -d \
-                 -p 3306:3306 \
-                 --name mysql \
-                 --restart unless-stopped \
-                 -v /home/docker/mysql/etc/conf.d:/etc/mysql/conf.d \
-                 -v /home/docker/mysql/data:/var/lib/mysql \
-                 -e MYSQL_ROOT_PASSWORD=1qaz2wsx \
-                 mysql
+    > chmod +x /home/docker/mysql/*.sh
     ```
+
+    c. 运行Mysql<br>
+
+    ```命令
+    > cd /home/docker/mysql/
+    > ./start-container.sh
+    ```
+
+    d. 设置文件权限<br>
 
     ```命令
     > chcon -Rt svirt_sandbox_file_t /home/docker/mysql/etc/conf.d
