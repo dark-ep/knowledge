@@ -114,17 +114,65 @@
 
     ![第6步](images/09_6_1.png)<br>
 
-7. 运行DockerCompose脚本<br>
+7. Docker运行RocketMQ集群<br>
+    a. 拷贝运行脚本到特定目录<br>
+
+    > [start-container.sh](files/09/start-container.sh) -> /home/docker/rocketmq/<br>
+
+    b. 设置执行权限<br>
 
     ```命令
-    > docker-compose -f /home/docker/rocketmq/script/dc-rocketmq.yml up -d
+    > chmod +x /home/docker/rocketmq/*.sh
     ```
 
-8. 验证是否启动成功<br>
+    c. 运行RocketMQ集群<br>
+
+    ```命令
+    > cd /home/docker/rocketmq/
+    > ./start-container.sh
+    ```
+
+8.  Nginx添加访问跳转<br>
+    a. 添加Nginx配置<br>
+
+    ```命令
+    > sudo vim /home/docker/nginx/etc/conf.d/default.conf
+    ```
+
+    ```内容
+    server {
+       …
+       location ^~ /rocketmq/ {
+                     proxy_pass http://localhost:18080/;
+                     proxy_set_header Host $host:80;
+                     proxy_set_header X-Real-IP $remote_addr;
+                     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        …
+    }
+    ```
+
+    b. 验证Nginx配置<br>
+
+    ```命令
+    > docker run -it \
+                 -v /home/docker/nginx/etc/nginx.conf:/etc/nginx/nginx.conf:ro \
+                 -v /home/docker/nginx/etc/conf.d:/etc/nginx/conf.d \
+                 nginx \
+                 nginx -t -c /etc/nginx/nginx.conf
+    ```
+
+    c. Docker重启nginx<br>
+
+    ```命令
+    > docker restart nginx
+    ```
+
+    d. 验证gitlab是否运行正常<br>
 
     ![第8步-1](images/09_8_1.png)<br>
 
-    > [访问控制台页面:\[Your IP Address\]:18080/](http://ep.cn:18080)<br>
+    > [访问控制台页面:访问http\://\<宿主机ip>/rocketmq](http://ep.cn/rocketmq)<br>
 
     ![第8步-2](images/09_8_2.png)<br>
 
@@ -138,7 +186,7 @@
     b. 为防火墙策略增加允许端口<br>
 
     ```命令
-    > sudo firewall-cmd --zone=public --add-port=18080/tcp --add-port=9876/tcp --permanent
+    > sudo firewall-cmd --zone=public --add-port=9876/tcp --permanent
     ```
 
     c. 重启防火墙<br>
