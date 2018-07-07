@@ -85,7 +85,7 @@
     > docker restart nginx
     ```
 
-    f. 验证gitlab是否运行正常<br>
+    d. 验证gitlab是否运行正常<br>
 
     > ![info][info] 访问http\://\<宿主机ip>/gitlab -> 设置root密码1qaz2wsx
 
