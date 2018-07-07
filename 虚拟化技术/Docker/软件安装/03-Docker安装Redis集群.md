@@ -31,13 +31,19 @@
 
     ![第3步-c](images/03_3_c_1.png)<br>
 
-4.  修改redis.conf为master.conf<br>
+4.  Docker创建归属redis使用的网络<br>
+
+    ```命令
+    > docker network create -d bridge redis-net
+    ```
+
+5.  修改redis.conf为master.conf<br>
 
     ```命令
     > mv /home/docker/redis/etc/redis.conf /home/docker/redis/etc/master.conf
     ```
 
-5.  修改master.conf<br>
+6.  修改master.conf<br>
 
     ```命令
     > vim /home/docker/redis/etc/master.conf
@@ -55,7 +61,7 @@
 
     > ![info][info] 增加密码，访问Redis时需要上送密码，可使Redis更加安全
 
-6.  Docker运行Redis的master<br>
+7.  Docker运行Redis的master<br>
     a. 拷贝运行脚本到特定目录<br>
 
     > [start-container-master.sh](files/03/start-container-master.sh) -> /home/docker/redis/<br>
@@ -73,7 +79,7 @@
     > ./start-container-master.sh
     ```
 
-7.  打开防火墙端口<br>
+8.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
@@ -98,13 +104,13 @@
     > sudo firewall-cmd --zone=public --list-all
     ```
 
-8.  拷贝master.conf为slave.conf<br>
+9.  拷贝master.conf为slave.conf<br>
 
     ```命令
     > cp /home/docker/redis/etc/master.conf /home/docker/redis/etc/slave.conf
     ```
 
-9. 修改slave.conf<br>
+10. 修改slave.conf<br>
 
     ```命令
     > vim /home/docker/redis/etc/slave.conf
@@ -118,7 +124,7 @@
 
     ![第10步-b](images/03_10_b_1.png)<br>
 
-10. Docker运行Redis的slave<br>
+11. Docker运行Redis的slave<br>
     a. 拷贝运行脚本到特定目录<br>
 
     > [start-container-slave.sh](files/03/start-container-slave.sh) -> /home/docker/redis/<br>
@@ -136,7 +142,7 @@
     > ./start-container-slave.sh
     ```
 
-11. 打开防火墙端口<br>
+12. 打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令

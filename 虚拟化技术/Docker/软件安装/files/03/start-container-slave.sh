@@ -8,7 +8,9 @@ sudo docker run -d \
                  --name redis-slave1 \
                  --restart unless-stopped \
                  --hostname redis-slave1 \
+                 --net redis-net \
                  -v /home/docker/redis/data/slave1/:/data \
                  -v /home/docker/redis/etc/slave.conf:/etc/redis/redis.conf \
+                 -v /etc/localtime:/etc/localtime \
                  redis \
                  redis-server /etc/redis/redis.conf &> /dev/null
