@@ -12,4 +12,5 @@ sudo docker run -d \
                  -v /home/docker/nginx/etc/conf.d:/etc/nginx/conf.d \
                  -v /home/docker/nginx/log:/var/log/nginx \
                  -v /home/docker/nginx/content:/usr/share/nginx/html:ro \
+                 -v /etc/localtime:/etc/localtime \
                  nginx &> /dev/null
