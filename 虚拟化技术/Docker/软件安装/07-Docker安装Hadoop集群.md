@@ -82,7 +82,7 @@
     a. 创建hadoop专属docker网络环境<br>
 
     ```命令
-    > docker network create --driver=bridge hadoop
+    > docker network create --driver=bridge bigdata-net
     ```
 
     b. 验证docker网络环境创建结果<br>
