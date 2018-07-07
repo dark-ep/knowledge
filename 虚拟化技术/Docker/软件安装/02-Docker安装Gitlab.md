@@ -10,16 +10,23 @@
 
     > ![info][info] [twang2218/gitlab-ce-zh说明地址][gitlab-ce-zh地址]
 
-2.  Docker创建归属gitlab使用的网络<br>
+2.  创建Gitlab宿主目录(DockerCompose脚本)<br>
+
+    ```命令
+    > mkdir -p /home/docker/gitlab/script
+    ```
+
+3.  Docker创建归属gitlab使用的网络<br>
 
     ```命令
     > docker network create -d bridge gitlab-net
     ```
 
-3.  Docker运行gitlab-ce-zh<br>
+4.  Docker运行gitlab-ce-zh<br>
     a. 拷贝运行脚本到特定目录<br>
 
     > [start-container.sh](files/02/start-container.sh) -> /home/docker/gitlab/<br>
+    > [script/dc-gitlab.yml](files/02/script/dc-gitlab.yml) -> /home/docker/gitlab/script<br>
 
     b. 设置执行权限<br>
 
@@ -34,32 +41,14 @@
     > ./start-container.sh
     ```
 
-4.  验证Docker运行结果<br>
+5.  验证Docker运行结果<br>
 
     ```命令
     > docker ps
     ```
 
 5.  Nginx添加访问跳转<br>
-    a. 修改gitlab.rb配置<br>
-
-    ```命令
-    > sudo vim /home/docker/gitlab/etc/gitlab.rb
-    ```
-
-    ```内容
-    external_url 'http://ep.cn/gitlab'
-    ```
-
-    ![第5步-a](images/02_5_a_1.png)<br>
-
-    b. Docker重启gitlab<br>
-
-    ```命令
-    > docker restart gitlab
-    ```
-
-    c. 添加Nginx配置<br>
+    a. 添加Nginx配置<br>
 
     ```命令
     > sudo vim /home/docker/nginx/etc/conf.d/default.conf
@@ -80,7 +69,7 @@
     }
     ```
 
-    d. 验证Nginx配置<br>
+    b. 验证Nginx配置<br>
 
     ```命令
     > docker run -it \
@@ -90,7 +79,7 @@
                  nginx -t -c /etc/nginx/nginx.conf
     ```
 
-    e. Docker重启nginx<br>
+    c. Docker重启nginx<br>
 
     ```命令
     > docker restart nginx

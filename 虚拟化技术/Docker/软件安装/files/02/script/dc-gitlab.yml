@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  gitlab:
+    image: twang2218/gitlab-ce-zh
+    container_name: gitlab
+    restart: unless-stopped
+    hostname: gitlab
+    ports:
+      - "3080:80"
+      - "3443:443"
+      - "3022:22"
+    environment:
+      TZ: 'Asia/Shanghai'
+      GITLAB_OMNIBUS_CONFIG: |
+         external_url 'http://ep.cn/gitlab'
+         gitlab_rails['time_zone'] = 'Asia/Shanghai'
+         # 需要配置到 gitlab.rb 中的配置可以在这里配置，每个配置一行，注意缩进。
+         # 比如下面的电子邮件的配置：
+         # gitlab_rails['smtp_enable'] = true
+         # gitlab_rails['smtp_address'] = "smtp.exmail.qq.com"
+         # gitlab_rails['smtp_port'] = 465
+         # gitlab_rails['smtp_user_name'] = "xxxx@xx.com"
+         # gitlab_rails['smtp_password'] = "password"
+         # gitlab_rails['smtp_authentication'] = "login"
+         # gitlab_rails['smtp_enable_starttls_auto'] = true
+         # gitlab_rails['smtp_tls'] = true
+         # gitlab_rails['gitlab_email_from'] = 'xxxx@xx.com'
+    volumes:
+       - "/home/docker/gitlab/data:/var/opt/gitlab"
+
+networks:
+  default:
+    external:
+      name: gitlab-net
