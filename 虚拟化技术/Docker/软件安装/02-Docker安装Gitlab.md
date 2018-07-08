@@ -73,6 +73,7 @@
 
     ```命令
     > docker run -it \
+                 --rm \
                  -v /home/docker/nginx/etc/nginx.conf:/etc/nginx/nginx.conf:ro \
                  -v /home/docker/nginx/etc/conf.d:/etc/nginx/conf.d \
                  nginx \
