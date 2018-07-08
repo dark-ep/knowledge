@@ -59,11 +59,12 @@
        …
        client_max_body_size 1g;
        …
-       location ^~ /gitlab {
+       location /gitlab/ {
             proxy_pass http://localhost:3080/gitlab/;
             proxy_set_header Host $host:80;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
         }
         …
     }
