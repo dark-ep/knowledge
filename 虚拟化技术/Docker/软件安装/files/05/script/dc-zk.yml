@@ -11,6 +11,8 @@ services:
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=0.0.0.0:22888:23888 server.2=zk2:22888:23888 server.3=zk3:22888:23888
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
 
   zk2:
     image: zookeeper
@@ -22,6 +24,8 @@ services:
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk1:22888:23888 server.2=0.0.0.0:22888:23888 server.3=zk3:22888:23888
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
 
   zk3:
     image: zookeeper
@@ -33,6 +37,8 @@ services:
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk1:22888:23888 server.2=zk2:22888:23888 server.3=0.0.0.0:22888:23888
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
 
 networks:
   default:
