@@ -28,6 +28,7 @@ services:
          # gitlab_rails['gitlab_email_from'] = 'xxxx@xx.com'
     volumes:
        - "/home/docker/gitlab/data:/var/opt/gitlab"
+       - "/etc/localtime:/etc/localtime:ro"
 
 networks:
   default:
