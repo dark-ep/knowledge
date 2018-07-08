@@ -1,0 +1,76 @@
+# Copyright 2015 Yahoo Inc. Licensed under the Apache License, Version 2.0
+# See accompanying LICENSE file.
+#
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /kafka-manager/                                                                       controllers.Application.index
+GET         /kafka-manager/clusters/:c                                                            controllers.Cluster.cluster(c:String)
+GET         /kafka-manager/clusters/:c/topics                                                     controllers.Topic.topics(c:String)
+GET         /kafka-manager/clusters/:c/topics/addPartitions                                       controllers.Topic.addPartitionsToMultipleTopics(c:String)
+POST        /kafka-manager/clusters/:c/topics/addPartitions                                       controllers.Topic.handleAddPartitionsToMultipleTopics(c:String)
+GET         /kafka-manager/clusters/:c/topics/:t                                                  controllers.Topic.topic(c:String, t:String, force:Boolean ?= false)
+GET         /kafka-manager/clusters/:c/logkafkas                                                  controllers.Logkafka.logkafkas(c:String)
+GET         /kafka-manager/clusters/:c/logkafkas/:h/:l                                            controllers.Logkafka.logkafka(c:String, h:String, l:String)
+GET         /kafka-manager/clusters/:c/brokers                                                    controllers.Cluster.brokers(c: String)
+GET         /kafka-manager/clusters/:c/brokers/:b                                                 controllers.Cluster.broker(c: String, b:Int)
+GET         /kafka-manager/clusters/:c/consumers                                                  controllers.Consumer.consumers(c: String)
+GET         /kafka-manager/clusters/:c/consumers/:g/type/:ct                                      controllers.Consumer.consumer(c: String, g:String, ct: String)
+GET         /kafka-manager/clusters/:c/consumers/:g/topic/:t/type/:ct                             controllers.Consumer.consumerAndTopic(c: String, g:String, t:String, ct: String)
+GET         /kafka-manager/clusters/:c/leader                                                     controllers.PreferredReplicaElection.preferredReplicaElection(c:String)
+POST        /kafka-manager/clusters/:c/leader                                                     controllers.PreferredReplicaElection.handleRunElection(c:String)
+GET         /kafka-manager/clusters/:c/assignment                                                 controllers.ReassignPartitions.reassignPartitions(c:String)
+POST        /kafka-manager/clusters/:c/assignment                                                 controllers.ReassignPartitions.handleOperation(c:String,t:String)
+GET         /kafka-manager/clusters/:c/assignment/confirm                                         controllers.ReassignPartitions.confirmAssignment(c:String,t:String)
+POST        /kafka-manager/clusters/:c/assignment/generate                                        controllers.ReassignPartitions.handleGenerateAssignment(c:String,t:String)
+GET         /kafka-manager/clusters/:c/assignments/confirm                                        controllers.ReassignPartitions.confirmMultipleAssignments(c:String)
+POST        /kafka-manager/clusters/:c/assignments/generate                                       controllers.ReassignPartitions.handleGenerateMultipleAssignments(c:String)
+#GET   /kafka-manager/clusters/:c/assignments/manual                      controllers.ReassignPartitions.manualMultipleAssignments(c:String)
+#POST  /kafka-manager/clusters/:c/assignments/manual                      controllers.ReassignPartitions.handleManualAssignment(c:String)
+GET         /kafka-manager/clusters/:c/assignments/run                                            controllers.ReassignPartitions.runMultipleAssignments(c:String)
+POST        /kafka-manager/clusters/:c/assignments/run                                            controllers.ReassignPartitions.handleRunMultipleAssignments(c:String)
+GET         /kafka-manager/addCluster                                                             controllers.Cluster.addCluster
+GET         /kafka-manager/updateCluster                                                          controllers.Cluster.updateCluster(c: String)
+POST        /kafka-manager/clusters                                                               controllers.Cluster.handleAddCluster
+POST        /kafka-manager/clusters/:c                                                            controllers.Cluster.handleUpdateCluster(c:String)
+GET         /kafka-manager/clusters/:c/createTopic                                                controllers.Topic.createTopic(c:String)
+POST        /kafka-manager/clusters/:c/topics/create                                              controllers.Topic.handleCreateTopic(c:String)
+GET         /kafka-manager/clusters/:c/topics/:t/confirm_delete                                   controllers.Topic.confirmDeleteTopic(c:String,t:String)
+POST        /kafka-manager/clusters/:c/topics/delete                                              controllers.Topic.handleDeleteTopic(c:String,t:String)
+GET         /kafka-manager/clusters/:c/topics/:t/addPartitions                                    controllers.Topic.addPartitions(c:String,t:String)
+POST        /kafka-manager/clusters/:c/topics/:t/addPartitions                                    controllers.Topic.handleAddPartitions(c:String,t:String)
+GET         /kafka-manager/clusters/:c/topics/:t/updateConfig                                     controllers.Topic.updateConfig(c:String,t:String)
+POST        /kafka-manager/clusters/:c/topics/:t/updateConfig                                     controllers.Topic.handleUpdateConfig(c:String,t: String)
+GET         /kafka-manager/clusters/:c/topics/:t/assignments/manual                               controllers.ReassignPartitions.manualAssignments(c:String, t:String)
+POST        /kafka-manager/clusters/:c/topics/:t/assignments/manual                               controllers.ReassignPartitions.handleManualAssignment(c:String, t: String)
+GET         /kafka-manager/clusters/:c/createLogkafka                                             controllers.Logkafka.createLogkafka(c:String)
+POST        /kafka-manager/clusters/:c/logkafkas/create                                           controllers.Logkafka.handleCreateLogkafka(c:String)
+POST        /kafka-manager/clusters/:c/logkafkas/delete                                           controllers.Logkafka.handleDeleteLogkafka(c:String, h:String, l:String)
+GET         /kafka-manager/clusters/:c/logkafkas/:h/:l/updateConfig                               controllers.Logkafka.updateConfig(c:String, h:String, l:String)
+POST        /kafka-manager/clusters/:c/logkafkas/:h/:l/updateConfig                               controllers.Logkafka.handleUpdateConfig(c:String, h:String, l:String)
+POST        /kafka-manager/clusters/:c/logkafkas/:h/:l/disableConfig                              controllers.Logkafka.handleDisableConfig(c:String, h:String, l:String)
+POST        /kafka-manager/clusters/:c/logkafkas/:h/:l/enableConfig                               controllers.Logkafka.handleEnableConfig(c:String, h:String, l:String)
+GET         /kafka-manager/api/status/:c/brokers                                                  controllers.api.KafkaStateCheck.brokers(c:String)
+GET         /kafka-manager/api/status/:c/brokers/extended                                         controllers.api.KafkaStateCheck.brokersExtended(c:String)
+GET         /kafka-manager/api/status/:c/topics                                                   controllers.api.KafkaStateCheck.topics(c:String)
+GET         /kafka-manager/api/status/:c/topicIdentities                                          controllers.api.KafkaStateCheck.topicIdentities(c:String)
+GET         /kafka-manager/api/status/clusters                                                    controllers.api.KafkaStateCheck.clusters
+GET         /kafka-manager/api/status/:c/:t/underReplicatedPartitions                             controllers.api.KafkaStateCheck.underReplicatedPartitions(c:String,t:String)
+GET         /kafka-manager/api/status/:c/:t/unavailablePartitions                                 controllers.api.KafkaStateCheck.unavailablePartitions(c:String,t:String)
+GET         /kafka-manager/api/status/:cluster/:consumer/:topic/:consumerType/topicSummary        controllers.api.KafkaStateCheck.topicSummaryAction(cluster:String, consumer:String, topic:String, consumerType:String)
+GET         /kafka-manager/api/status/:cluster/:consumer/:consumerType/groupSummary               controllers.api.KafkaStateCheck.groupSummaryAction(cluster:String, consumer:String, consumerType:String)
+GET         /kafka-manager/api/status/:cluster/consumersSummary                                   controllers.api.KafkaStateCheck.consumersSummaryAction(cluster:String)
+
+# Versioned Assets
+GET         /kafka-manager/vassets/*file                                                          controllers.Assets.versioned(path="/public", file: Asset)
+
+# Unversioned Assets
+GET         /kafka-manager/assets/*file                                                           controllers.Assets.at(path="/public", file)
+
+# WebJars
+GET         /kafka-manager/webjars/*file                                                          controllers.WebJarAssets.at(file)
+
+# Ping / Health Check
+GET         /kafka-manager/api/health                                                             controllers.ApiHealth.ping
