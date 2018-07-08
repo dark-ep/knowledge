@@ -141,12 +141,13 @@
 
     ```内容
     server {
-       …
-       location ^~ /rocketmq/ {
-                     proxy_pass http://localhost:18080/;
-                     proxy_set_header Host $host:80;
-                     proxy_set_header X-Real-IP $remote_addr;
-                     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        …
+        location /rocketmq/ {
+            proxy_pass http://localhost:18080/;
+            proxy_set_header Host $host:80;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
         }
         …
     }
@@ -169,7 +170,7 @@
     > docker restart nginx
     ```
 
-    d. 验证gitlab是否运行正常<br>
+    d. 验证rocketmq是否运行正常<br>
 
     ![第8步-1](images/09_8_1.png)<br>
 

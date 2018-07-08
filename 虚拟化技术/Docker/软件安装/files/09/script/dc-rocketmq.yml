@@ -26,6 +26,8 @@ services:
         environment:
             NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
             MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+        depends_on:
+            - rocketmq-namesrv
 
     rocketmq-broker-a-s:
         container_name: rocketmq-broker-a-s
@@ -40,6 +42,8 @@ services:
         environment:
             NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
             MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+        depends_on:
+            - rocketmq-broker-a
 
     rocketmq-broker-b:
         container_name: rocketmq-broker-b
@@ -54,6 +58,8 @@ services:
         environment:
             NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
             MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+        depends_on:
+            - rocketmq-namesrv
 
     rocketmq-broker-b-s:
         container_name: rocketmq-broker-b-s
@@ -68,6 +74,8 @@ services:
         environment:
             NAMESRV_ADDR: rocketmq-namesrv:9876  # namesrv的地址
             MEMORY_CONF: "-Xms128m -Xmx256m -Xmn128m"
+        depends_on:
+            - rocketmq-broker-b
 
     rocketmq-console:
         container_name: rocketmq-console
@@ -80,6 +88,10 @@ services:
             - 18080:8080
         environment:
             JAVA_OPTS: -Drocketmq.config.namesrvAddr=rocketmq-namesrv:9876
+        depends_on:
+            - rocketmq-namesrv
+            - rocketmq-broker-a-s
+            - rocketmq-broker-b-s
 
 networks:
     default:
