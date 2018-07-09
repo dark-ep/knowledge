@@ -13,7 +13,7 @@
 2.  创建Hadoop宿主目录(Dockerfile脚本及配置)<br>
 
     ```命令
-    > mkdir -p /home/docker/hadoop
+    > mkdir -p /home/docker/hadoop/config
     ```
 
 3.  编写Dockerfile创建Hadoop镜像脚本<br>
