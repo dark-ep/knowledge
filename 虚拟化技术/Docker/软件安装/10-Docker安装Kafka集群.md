@@ -111,13 +111,13 @@
     > docker restart nginx
     ```
 
-    d. 验证rocketmq是否运行正常<br>
+    d. 验证kafka是否运行正常<br>
 
-    ![第6步-1](images/10_6_1.png)<br>
+    ![第6步-d-1](images/10_6_d_1.png)<br>
 
     > [访问控制台页面:访问http\://\<宿主机ip>/kafka](http://ep.cn/kafka)<br>
 
-    ![第6步-2](images/10_6_2.png)<br>
+    ![第6步-d-2](images/10_6_d_2.png)<br>
 
 7. 打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
