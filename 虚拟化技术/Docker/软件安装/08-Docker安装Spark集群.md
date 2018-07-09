@@ -13,7 +13,7 @@
 2.  创建Spark宿主目录(Dockerfile脚本及配置)<br>
 
     ```命令
-    > mkdir -p /home/docker/spark
+    > mkdir -p /home/docker/spark/config
     ```
     
 3.  编写Dockerfile创建Spark镜像脚本<br>
