@@ -1,4 +1,4 @@
-# Docker 安装 RabbitMQ3.7.7 集群
+# Docker 安装 RabbitMQ3.7.7
 
 ## 软件安装
 
