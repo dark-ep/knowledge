@@ -10,7 +10,6 @@
 
     > ![info][info] [mysql说明地址][mysql地址]
 
-
 2.  创建Mysql宿主目录(配置etc)<br>
 
     ```命令
