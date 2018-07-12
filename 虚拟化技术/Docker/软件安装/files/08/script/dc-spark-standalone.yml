@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  spark-master:
+    image: local/spark:2.3.1
+    container_name: spark-master
+    restart: unless-stopped
+    hostname: spark-master
+    ports:
+      - "50070:50070"
+      - "9000:9000"
+      - "8088:8088"
+      - "7077:7077"
+      - "8080:8080"
+      - "4040:4040"
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
+
+networks:
+  default:
+    external:
+      name: bigdata-net
