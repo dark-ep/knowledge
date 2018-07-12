@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  hadoop-master:
+    image: local/hadoop:2.7.6
+    container_name: hadoop-master
+    restart: unless-stopped
+    hostname: hadoop-master
+    ports:
+      - "50070:50070"
+      - "9000:9000"
+      - "8088:8088"
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
+
+networks:
+  default:
+    external:
+      name: bigdata-net
