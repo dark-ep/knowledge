@@ -59,7 +59,7 @@
     c. 设置执行权限<br>
 
     ```命令
-    > chmod +x /home/docker/hadoop/*.sh
+    > chmod +x /home/docker/hadoop/script/core/*.sh
     ```
 
 5.  依赖Dockerfile构建镜像<br>
@@ -102,6 +102,7 @@
     b. 执行启动脚本<br>
 
     ```命令
+    > chmod +x /home/docker/hadoop/*.sh
     > cd /home/docker/hadoop/
     > ./start-container-standalone.sh
     ```
@@ -134,12 +135,14 @@
 8.  运行Hadoop集群模式<br>
     a. 拷贝文件到特定目录<br>
 
+    > [config/hdfs-site.xml](files/07/config/hdfs-site.xml) -> /home/docker/hadoop/config/<br>
     > [script/dc-hadoop-cluster.yml](files/07/script/dc-hadoop-cluster.yml) -> /home/docker/hadoop/script/<br>
     > [start-container-cluster.sh](files/07/start-container-cluster.sh) -> /home/docker/hadoop/<br>
 
     b. 执行启动脚本<br>
 
     ```命令
+    > chmod +x /home/docker/hadoop/*.sh
     > cd /home/docker/hadoop/
     > ./start-container-cluster.sh 3
     ```
