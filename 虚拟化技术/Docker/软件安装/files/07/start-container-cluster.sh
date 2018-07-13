@@ -22,7 +22,7 @@ done
 sed -i "s|<value>\([0-9]\)</value>|<value>$N</value>|g" config/hdfs-site.xml
 
 # start hadoop-master hadoop-slave container
-sudo docker rm -f hadoop-master &> /dev/null
+docker-compose -f /home/docker/hadoop/script/dc-hadoop-cluster.yml rm --force --stop
 echo "start hadoop-master container..."
 docker-compose -f /home/docker/hadoop/script/dc-hadoop-cluster.yml up -d
 
