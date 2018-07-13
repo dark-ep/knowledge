@@ -13,7 +13,7 @@ sudo docker run -d \
                  --name rabbitmq \
                  --restart unless-stopped \
                  --hostname rabbitmq \
-                 -v /etc/localtime:/etc/localtime \
+                 -v /etc/localtime:/etc/localtime:ro \
                  -e RABBITMQ_DEFAULT_USER=admin \
                  -e RABBITMQ_DEFAULT_PASS=1qaz2wsx \
                  rabbitmq:management &> /dev/null
