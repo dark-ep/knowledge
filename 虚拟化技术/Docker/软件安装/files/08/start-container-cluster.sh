@@ -22,7 +22,7 @@ done
 sed -i "s|<value>\([0-9]\)</value>|<value>$N</value>|g" config/hdfs-site.xml
 
 # start spark-master spark-slave container
-sudo docker rm -f spark-master &> /dev/null
+docker-compose -f /home/docker/spark/script/dc-spark-cluster.yml rm --force --stop
 echo "start spark-master container..."
 docker-compose -f /home/docker/spark/script/dc-spark-cluster.yml up -d
 

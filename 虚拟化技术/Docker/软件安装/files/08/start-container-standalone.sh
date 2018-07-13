@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start spark master container
-sudo docker rm -f spark-master &> /dev/null
+docker-compose -f /home/docker/spark/script/dc-spark-standalone.yml rm --force --stop
 echo "start spark-master container..."
 docker-compose -f /home/docker/spark/script/dc-spark-standalone.yml up -d
 
