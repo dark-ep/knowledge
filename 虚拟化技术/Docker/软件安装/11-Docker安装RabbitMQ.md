@@ -22,7 +22,7 @@
     > chmod +x /home/docker/rabbitmq/*.sh
     ```
 
-    c. 运行MongoDB<br>
+    c. 运行RabbitMQ<br>
 
     ```命令
     > cd /home/docker/rabbitmq/
