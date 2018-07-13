@@ -9,6 +9,6 @@ sudo docker run -d \
                  --restart unless-stopped \
                  --hostname mongo \
                  -v /home/docker/mongo/data:/data/db \
-                 -v /etc/localtime:/etc/localtime \
+                 -v /etc/localtime:/etc/localtime:ro \
                  mongo \
                  --auth &> /dev/null
