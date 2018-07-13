@@ -11,7 +11,7 @@ fi
 
 # change slaves file
 i=1
-rm config/slaves
+rm -rf config/slaves
 while [ $i -lt $N ]
 do
 	echo "hadoop-slave$i" >> config/slaves
