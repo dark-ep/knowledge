@@ -34,19 +34,16 @@
 
     b.修改配置可使二级目录进行页面访问<br>
 
-    >1.修改[application.conf](files/10/conf/application.conf)的play.http.context参数 -> play.http.context = "/kafka-manager/"<br>
-    >2.修改[routes](files/10/conf/routes)的所有参数 -> 把所有的地址前都增加/kafka-manager<br>
+    >1.修改[application.conf](files/10/manager/conf/application.conf)的play.http.context参数 -> play.http.context = "/kafka-manager/"<br>
+    >2.修改[routes](files/10/manager/conf/routes)的所有参数 -> 把所有的地址前都增加/kafka-manager<br>
 
 5.  Docker运行Kafka集群<br>
     a. 拷贝运行脚本到特定目录<br>
 
     > [start-container.sh](files/10/start-container.sh) -> /home/docker/kafka/<br>
     > [script/dc-kafka.yml](files/10/script/dc-kafka.yml) -> /home/docker/kafka/script/<br>
-    > [conf/application.conf](files/10/conf/application.conf) -> /home/docker/kafka/manager/conf<br>
-    > [conf/consumer.properties](files/10/conf/consumer.properties) -> /home/docker/kafka/manager/conf<br>
-    > [conf/logback.xml](files/10/conf/logback.xml) -> /home/docker/kafka/manager/conf<br>
-    > [conf/logger.xml](files/10/conf/logger.xml) -> /home/docker/kafka/manager/conf<br>
-    > [conf/routes](files/10/conf/routes) -> /home/docker/kafka/manager/conf<br>
+    > [manager/conf/application.conf](files/10/manager/conf/application.conf) -> /home/docker/kafka/manager/conf<br>
+    > [manager/conf/routes](files/10/manager/conf/routes) -> /home/docker/kafka/manager/conf<br>
 
     b. 设置执行权限<br>
 
