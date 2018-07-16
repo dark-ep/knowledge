@@ -11,6 +11,7 @@ sudo docker run -d \
                  --hostname es \
                  -v /etc/localtime:/etc/localtime:ro \
                  -v /home/docker/es/data:/usr/share/elasticsearch/data \
+                 -v /home/docker/es/plugins:/usr/share/elasticsearch/plugins \
                  elasticsearch \
                  -Etransport.host=0.0.0.0 \
                  &> /dev/null
