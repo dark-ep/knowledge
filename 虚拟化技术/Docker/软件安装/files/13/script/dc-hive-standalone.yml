@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  spark-master:
+    image: local/hive:2.3.3
+    container_name: hive-master
+    restart: unless-stopped
+    hostname: hive-master
+    ports:
+      - "50070:50070"
+      - "9000:9000"
+      - "8088:8088"
+      - "9083:9083"
+      - "10000:10000"
+      - "10002:10002"
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
+
+networks:
+  default:
+    external:
+      name: bigdata-net
