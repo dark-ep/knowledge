@@ -16,6 +16,9 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV HADOOP_HOME /usr/local/hadoop
 ENV PATH /usr/local/hadoop/bin:/usr/local/hadoop/sbin:$PATH
 
+# set encoding
+ENV LANG C.UTF-8
+
 COPY config/* /tmp/
 
 RUN cd /usr/local && ln -s ./hadoop-2.7.6 hadoop && \
