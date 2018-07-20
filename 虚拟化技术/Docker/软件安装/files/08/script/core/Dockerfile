@@ -24,6 +24,9 @@ ENV SPARK_HOME /usr/local/spark
 ENV SCALA_HOME /usr/local/scala
 ENV PATH /usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:/usr/local/scala/bin:$PATH
 
+# set encoding
+ENV LANG C.UTF-8
+
 COPY config/* /tmp/
 
 RUN cd /usr/local && \
