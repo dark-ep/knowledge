@@ -13,6 +13,9 @@ ENV ROCKETMQ_HOME /opt/rocketmq
 ENV PATH /opt/rocketmq/bin:$PATH
 ENV MEMORY_CONF "-Xms256m -Xmx512m -Xmn256m"
 
+# set encoding
+ENV LANG C.UTF-8
+
 # install rocketmq
 RUN mkdir -p $ROCKETMQ_HOME /opt/logs /opt/store
 COPY rocketmq-all-4.2.0-bin-release.zip $ROCKETMQ_HOME

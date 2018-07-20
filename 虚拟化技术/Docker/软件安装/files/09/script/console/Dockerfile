@@ -10,6 +10,9 @@ RUN apt-get update && \
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
+# set encoding
+ENV LANG C.UTF-8
+
 ADD rocketmq-console-ng-1.0.0.jar app.jar
 ENV JAVA_OPTS=""
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar /app.jar" ]
