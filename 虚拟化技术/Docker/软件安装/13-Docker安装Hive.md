@@ -118,7 +118,7 @@
 
     ![第7步-b-1](images/13_7_b_1.png)<br>
 
-    > ![info][info] 容器启动成功后会自动进入hive-master容器
+    > ![info][info] 容器启动成功后会自动进入hive-master容器<br>
 
     ```命令
     > cd ~
@@ -137,7 +137,7 @@
     > ./start-hive.sh
     ```
 
-    c. 验证是否启动成功
+    c. 验证是否启动成功<br>
 
     ```命令
     > jps
@@ -179,6 +179,38 @@
     ```命令
     > sudo firewall-cmd --zone=public --list-all
     ```
+
+9.  Beeline进行操作<br>
+    a. 前置条件<br>
+
+    > 1. 启动hiveserver2服务（端口默认设置为10000）<br>
+    > 2. 设置可以被任意人使用（hadoop的core-site.xml，需要重启hdfs）<br>
+    > 3. 准备测试数据student.txt放到root目录下：[data/student.txt](files/13/script/core/data/student.txt) -> /root/<br>
+
+    ![第9步-a-1](images/13_9_a_1.png)<br>
+    ![第9步-a-2](images/13_9_a_2.png)<br>
+
+    b. 链接hiveserver2<br>
+
+    ```命令
+    > $HIVE_HOME/bin/beeline -u jdbc:hive2://127.0.0.1:10000
+    ```
+
+    ![第9步-b-1](images/13_9_b_1.png)<br>
+
+    c. 操作hive<br>
+
+    ```命令
+    > create database test;
+    > show databases;
+    > use test;
+    > create table student(id int, name string, sex string, age int, department string) row format delimited fields terminated by "," lines terminated by "\n";
+    > load data local inpath "/root/student.txt" into table student;
+    > select * from student;
+    ```
+
+    ![第9步-c-1](images/13_9_c_1.png)<br>
+    ![第9步-c-2](images/13_9_c_2.png)<br>
 
 [info]: /images/info.png
 

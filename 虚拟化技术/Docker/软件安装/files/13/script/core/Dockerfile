@@ -21,6 +21,9 @@ ENV HIVE_HOME /usr/local/hive
 ENV HIVE_CONF_DIR /usr/local/hive/conf
 ENV PATH /usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/hive/bin:$PATH
 
+# set encoding
+ENV LANG C.UTF-8
+
 COPY config/* /tmp/
 COPY lib/* /tmp/
 
