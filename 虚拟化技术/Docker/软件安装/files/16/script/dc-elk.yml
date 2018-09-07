@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    container_name: elasticsearch
+    restart: unless-stopped
+    hostname: elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - "discovery.type=single-node"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:6.4.0
+    hostname: kibana
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+    restart: unless-stopped
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:6.4.0
+    hostname: logstash
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/home/docker/elk/logstash/conf/logstash.conf:/usr/share/logstash/pipeline/logstash.conf"
+    restart: unless-stopped
+    ports:
+          - 5043:5043
+    depends_on:
+      - elasticsearch
+      - kibana
+
+  filebeat:
+    container_name: filebeat
+    image: docker.elastic.co/beats/filebeat:6.4.0
+    hostname: filebeat
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/home/docker/elk/filebeat/conf/filebeat.yml:/usr/share/filebeat/filebeat.yml"
+      - "/home/docker/elk/logs:/home/user/elk/logs"
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+      - kibana
+      - logstash
+
+networks:
+    default:
+        external:
+            name: bigdata-net
