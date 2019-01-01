@@ -10,7 +10,11 @@
 
     > ![info][info] [mongo说明地址][mongo地址]
 
-2.  Docker运行MongoDB<br>
+2.  创建Zookeeper宿主目录<br>
+
+    >  mkdir -p /home/docker/mongo
+
+3.  Docker运行MongoDB<br>
     a. 拷贝运行脚本到特定目录<br>
 
     > [start-container.sh](files/04/start-container.sh) -> /home/docker/mongo/<br>
@@ -28,7 +32,7 @@
     > ./start-container.sh
     ```
 
-3.  MongoDB用户管理<br>
+4.  MongoDB用户管理<br>
     a. 通过Docker进入管理命令行<br>
 
     ```命令
@@ -82,7 +86,7 @@
     > docker run -it --rm --link mongo:mongo mongo mongo -u dba -p dba --authenticationDatabase admin mongo/test
     ```
 
-4.  打开防火墙端口<br>
+5.  打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
@@ -107,7 +111,7 @@
     > sudo firewall-cmd --zone=public --list-all
     ```
 
-5.  工具验证连接Mongo<br>
+6.  工具验证连接Mongo<br>
 
     ![第5步-1](images/04_5_1.png)<br>
     ![第5步-2](images/04_5_2.png)<br>
