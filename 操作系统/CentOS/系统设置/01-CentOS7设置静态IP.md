@@ -44,9 +44,9 @@
     ZONE=public
     IPADDR=192.168.3.100
     NETMASK=255.255.255.0
-    GATEWAY=192.168.3.1
+    GATEWAY=192.168.3.2
     NM_CONTROLLED="no"
-    DNS1=192.168.3.1
+    DNS1=192.168.3.2
     ```
 
     ![第4步-1](images/01_4_1.png)<br>
@@ -57,3 +57,4 @@
     ```命令
     > systemctl restart network
     ```
+>   PS:前置设置为[VM 修改子网地址](../../../虚拟化技术/VMware/软件设置/01-VM修改子网地址.md)
