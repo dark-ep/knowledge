@@ -32,6 +32,16 @@
 
     ![第3步-1](images/02_3_1.png)<br>
 
+    ```命令
+    > vim /etc/systemd/resolved.conf
+    ```
+
+    ```内容
+    DNS=8.8.8.8 223.5.5.5
+    ```
+    
+    ![第3步-2](images/02_3_2.png)<br>
+
 4. 重启网络并验证<br>
 
     ```命令
