@@ -13,3 +13,13 @@
     ![第2步-6](images/01_2_6.png)<br>
 
     > 用户：ubuntu 密码：1qaz2wsx
+3.  安装常用工具
+
+    ```命令
+    > # 安装网络工具，可以使用ifconfig命令
+    > sudo apt install net-tools 
+    > # 安装VIM，可以使用vim编辑文件
+    > sudo apt install vim
+    > # 安装ssh，可以使用工具远程通过ssh登录系统
+    > sudo apt-get install openssh-server
+    ```
