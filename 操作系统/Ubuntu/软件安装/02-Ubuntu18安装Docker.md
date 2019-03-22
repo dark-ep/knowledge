@@ -37,3 +37,11 @@
 6.  安装校验<br>
 
     ![第6步-1](images/02_6_1.png)<br> 
+
+7.  创建docker目录，并赋值权限<br>
+
+    ```命令
+    > gpasswd -a ubuntu docker
+    > mkdir /home/docker/
+    > chown -R ubuntu:ubuntu /home/docker/
+    ```
