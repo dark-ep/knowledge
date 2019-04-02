@@ -47,7 +47,7 @@
     > docker ps
     ```
 
-5.  Nginx添加访问跳转<br>
+6.  Nginx添加访问跳转<br>
     a. 添加Nginx配置<br>
 
     ```命令
