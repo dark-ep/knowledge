@@ -45,3 +45,68 @@
     > mkdir /home/docker/
     > chown -R ubuntu:ubuntu /home/docker/
     ```
+
+8.  设置镜像加速<br>
+    a. 添加文件daemon.json<br>
+
+    ```命令
+    > vim /etc/docker/daemon.json
+    ```
+
+    ```内容
+    {
+      "registry-mirrors": [
+        "https://registry.docker-cn.com"
+      ]
+    }
+    ```
+
+    b. 重启Docker<br>
+
+    ```命令
+    > service docker restart
+    ```
+
+    c. 验证是否增加成功<br>
+
+    ```命令
+    > docker info
+    ```
+
+    ![第8步-c](images/02_8_c_1.png)<br>
+
+9.  添加内核参数<br>
+
+    > ![info][info] 执行docker info出现告警时进行操作<br>
+    > ![第9步](images/02_9_1.png)<br>
+
+    a. 修改文件grub<br>
+
+    ```命令
+    > vim /etc/default/grub
+    ```
+
+    ```内容
+    GRUB_DEFAULT=0
+    GRUB_HIDDEN_TIMEOUT=0
+    GRUB_HIDDEN_TIMEOUT_QUIET=true
+    GRUB_TIMEOUT=10
+    GRUB_DISTRIBUTOR=lsb_release -i -s 2> /dev/null || echo Debian
+    GRUB_CMDLINE_LINUX_DEFAULT=“cgroup_enable=memory swapaccount=1”
+    GRUB_CMDLINE_LINUX=""
+    ```
+
+    b. 重新加载grub并重启系统<br>
+
+    ```命令
+    > update-grub
+    > reboot
+    ```
+
+    c. 验证是否增加成功<br>
+
+    ```命令
+    > docker info
+    ```
+
+[info]: /images/info.png
