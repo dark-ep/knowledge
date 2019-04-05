@@ -2,7 +2,7 @@ version: '3'
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: elasticsearch:6.7.0
     container_name: elasticsearch
     restart: unless-stopped
     hostname: elasticsearch
@@ -16,7 +16,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:6.4.0
+    image: kibana:6.7.0
     hostname: kibana
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -30,21 +30,21 @@ services:
 
   logstash:
     container_name: logstash
-    image: docker.elastic.co/logstash/logstash:6.4.0
+    image: logstash:6.7.0
     hostname: logstash
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/home/docker/elk/logstash/conf/logstash.conf:/usr/share/logstash/pipeline/logstash.conf"
     restart: unless-stopped
     ports:
-          - 5043:5043
+      - 5043:5043
     depends_on:
       - elasticsearch
       - kibana
 
   filebeat:
     container_name: filebeat
-    image: docker.elastic.co/beats/filebeat:6.4.0
+    image: elastic/filebeat:6.7.0
     hostname: filebeat
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -55,8 +55,9 @@ services:
       - elasticsearch
       - kibana
       - logstash
+    command: filebeat -e -strict.perms=false
 
 networks:
-    default:
-        external:
-            name: bigdata-net
+  default:
+    external:
+      name: elk-net

@@ -1,17 +1,20 @@
-# Docker 安装 ELK6.4.0
+# Docker 安装 ELK6.7.0
 
 ## 软件安装
 
 1.  Docker获取最新版ELK<br>
 
     ```命令
-    > docker pull docker.elastic.co/elasticsearch/elasticsearch:6.4.0
-    > docker pull docker.elastic.co/kibana/kibana:6.4.0
-    > docker pull docker.elastic.co/beats/filebeat:6.4.0
-    > docker pull docker.elastic.co/logstash/logstash:6.4.0
+    > docker pull elasticsearch:6.7.0
+    > docker pull kibana:6.7.0
+    > docker pull logstash:6.7.0
+    > docker pull elastic/filebeat:6.7.0
     ```
 
-    > ![info][info] [ELK说明地址][ELK地址]
+    > ![info][info] [elasticsearch说明地址][elasticsearch地址]<br>
+    > ![info][info] [kibana说明地址][kibana地址]<br>
+    > ![info][info] [logstash说明地址][logstash地址]<br>
+    > ![info][info] [filebeat说明地址][filebeat地址]<br>
 
 2.  创建ELK宿主目录(脚本及配置,待处理的日志目录)<br>
 
@@ -22,7 +25,13 @@
     > mkdir -p /home/docker/elk/logstash/conf
     ```
 
-3.  Docker运行ELK<br>
+3.  Docker创建归属elk使用的网络<br>
+
+    ```命令
+    > docker network create -d bridge elk-net
+    ```
+
+4.  Docker运行ELK<br>
     a. 拷贝运行脚本到特定目录<br>
 
     > [start-container.sh](files/16/start-container.sh) -> /home/docker/elk/<br>
@@ -47,9 +56,9 @@
 
     > [访问Manager页面:\[Your IP Address\]:5601/](http://ep.cn:5601)<br>
 
-    ![第3步-d-1](images/16_3_d_1.png)<br>
+    ![第4步-d-1](images/16_4_d_1.png)<br>
 
-4. 打开防火墙端口<br>
+5. 打开防火墙端口<br>
     a. 查看当前活动防火墙策略<br>
 
     ```命令
@@ -74,19 +83,22 @@
     > sudo firewall-cmd --zone=public --list-all
     ```
 
-5. 设置Kibana搜索规则<br>
+6. 设置Kibana搜索规则<br>
     a. 添加Kibana的index设置<br>
 
-    ![第5步-a-1](images/16_5_a_1.png)<br>
-    ![第5步-a-2](images/16_5_a_2.png)<br>
-    ![第5步-a-3](images/16_5_a_3.png)<br>
-    ![第5步-a-4](images/16_5_a_4.png)<br>
+    ![第5步-a-1](images/16_6_a_1.png)<br>
+    ![第5步-a-2](images/16_6_a_2.png)<br>
+    ![第5步-a-3](images/16_6_a_3.png)<br>
+    ![第5步-a-4](images/16_6_a_4.png)<br>
 
     b. Discover增加Filter查看搜索结果<br>
 
-    ![第5步-b-1](images/16_5_b_1.png)<br>
-    ![第5步-b-2](images/16_5_b_2.png)<br>
-    ![第5步-b-3](images/16_5_b_3.png)<br>
+    ![第5步-b-1](images/16_6_b_1.png)<br>
+    ![第5步-b-2](images/16_6_b_2.png)<br>
+    ![第5步-b-3](images/16_6_b_3.png)<br>
 
-[ELK地址]: https://www.docker.elastic.co/
+[elasticsearch地址]: https://hub.docker.com/_/elasticsearch
+[kibana地址]: https://hub.docker.com/_/kibana
+[logstash地址]: https://hub.docker.com/_/logstash
+[filebeat地址]: https://hub.docker.com/_/filebeat
 [info]: /images/info.png
