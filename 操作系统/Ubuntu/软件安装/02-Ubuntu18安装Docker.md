@@ -56,7 +56,7 @@
     ```内容
     {
       "registry-mirrors": [
-        "https://registry.docker-cn.com"
+        "http://hub-mirror.c.163.com"
       ]
     }
     ```
