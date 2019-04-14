@@ -5,8 +5,6 @@ sudo docker rm -f jenkins &> /dev/null
 echo "start jenkins container..."
 sudo docker run -u root \
                 -d \
-                -p 38080:8080 \
-                -p 50000:50000 \
                 --name jenkins \
                 --restart unless-stopped \
                 --hostname jenkins \

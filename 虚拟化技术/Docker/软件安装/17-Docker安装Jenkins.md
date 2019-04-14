@@ -35,35 +35,16 @@
     > ./start-container.sh
     ```
 
-4.  配置Jenkins<br>
-    
-    > 查看jenkins启动日志，获取默认密码
+4.  Nginx添加访问跳转<br>
+    a. 获取Jenkins容器IP<br>
 
     ```命令
-    > docker logs -f jenkins
+    > docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins
     ```
 
-    ![第4步-1](images/17_4_1.png)<br>
+    ![第4步-a](images/17_4_a_1.png)<br>
 
-    > [访问控制台页面:访问http\://\<宿主机ip>:38080](http://192.168.3.100:38080/)<br>
-    > 输入密码0f71278bb1ea4fec88755cd1fd7432d9<br>
-
-    ![第4步-2](images/17_4_2.png)<br>
-
-    > 选择插件安装方式
-
-    ![第4步-3](images/17_4_3.png)<br>
-
-    > 选择安装推荐插件
-
-    ![第4步-4](images/17_4_4.png)<br>    
-
-    > 设置管理员 -> 设置root密码1qaz2wsx
-
-    ![第4步-5](images/17_4_5.png)<br>    
-
-5.  Nginx添加访问跳转<br>
-    a. 添加Nginx配置<br>
+    b. 添加Nginx配置<br>
 
     ```命令
     > sudo vim /home/docker/nginx/etc/conf.d/default.conf
@@ -73,7 +54,7 @@
     server {
        …
        location /jenkins/ {
-            proxy_pass http://localhost:38080/jenkins/;
+            proxy_pass http://172.17.0.2:8080/jenkins/;
             proxy_set_header Host $host:80;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -83,7 +64,7 @@
     }
     ```
 
-    b. 验证Nginx配置<br>
+    c. 验证Nginx配置<br>
 
     ```命令
     > docker run -it \
@@ -94,13 +75,41 @@
                  nginx -t -c /etc/nginx/nginx.conf
     ```
 
-    c. Docker重启nginx<br>
+    d. Docker重启nginx<br>
 
     ```命令
     > docker restart nginx
     ```
 
-    d. 验证jenkins是否运行正常<br>
+    e. 验证jenkins是否运行正常<br>
+    
+    > ![info][info] 访问http\://\<宿主机ip>/jenkins
+
+5.  配置Jenkins<br>
+    a. 查看jenkins启动日志，获取默认密码
+
+    ```命令
+    > docker logs -f jenkins
+    ```
+
+    ![第5步-a](images/17_5_a_1.png)<br>
+
+    b. 访问控制台页面:访问[http\://\<宿主机ip>/jenkins](http://192.168.3.100/jenkins/)<br>
+    > 输入密码0f71278bb1ea4fec88755cd1fd7432d9<br>
+
+    ![第5步-b](images/17_5_b_1.png)<br>
+
+    c. 选择插件安装方式
+
+    ![第5步-c](images/17_5_c_1.png)<br>
+
+    d. 选择安装推荐插件
+
+    ![第5步-d](images/17_5_d_1.png)<br>    
+
+    e. 设置管理员 -> 设置root密码1qaz2wsx
+
+    ![第5步-e](images/17_5_e_1.png)<br>
 
 [info]: /images/info.png
 
