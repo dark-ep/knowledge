@@ -89,13 +89,13 @@
                  nginx -t -c /etc/nginx/nginx.conf
     ```
 
-    c. Docker重启nginx<br>
+    d. Docker重启nginx<br>
 
     ```命令
     > docker restart nginx
     ```
 
-    d. 验证gitlab是否运行正常<br>
+    e. 验证gitlab是否运行正常<br>
 
     > ![info][info] 访问http\://\<宿主机ip>/gitlab -> 设置root密码1qaz2wsx
 
