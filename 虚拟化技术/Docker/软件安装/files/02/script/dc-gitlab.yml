@@ -6,10 +6,6 @@ services:
     container_name: gitlab
     restart: unless-stopped
     hostname: gitlab
-    ports:
-      - "3080:80"
-      - "3443:443"
-      - "3022:22"
     environment:
       TZ: 'Asia/Shanghai'
       GITLAB_OMNIBUS_CONFIG: |

@@ -48,7 +48,15 @@
     ```
 
 6.  Nginx添加访问跳转<br>
-    a. 添加Nginx配置<br>
+    a. 获取Gitlab容器IP<br>
+
+    ```命令
+    > docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gitlab
+    ```
+
+    ![第6步-a](images/02_6_a_1.png)<br>
+
+    b. 添加Nginx配置<br>
 
     ```命令
     > sudo vim /home/docker/nginx/etc/conf.d/default.conf
@@ -60,7 +68,7 @@
        client_max_body_size 1g;
        …
        location /gitlab/ {
-            proxy_pass http://localhost:3080/gitlab/;
+            proxy_pass http://172.19.0.2/gitlab/;
             proxy_set_header Host $host:80;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -70,7 +78,7 @@
     }
     ```
 
-    b. 验证Nginx配置<br>
+    c. 验证Nginx配置<br>
 
     ```命令
     > docker run -it \
