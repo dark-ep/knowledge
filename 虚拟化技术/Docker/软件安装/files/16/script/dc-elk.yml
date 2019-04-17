@@ -2,49 +2,53 @@ version: '3'
 
 services:
   elasticsearch:
-    image: elasticsearch:6.7.0
+    image: elasticsearch:6.7.1
     container_name: elasticsearch
     restart: unless-stopped
     hostname: elasticsearch
-    ports:
-      - 9200:9200
-      - 9300:9300
+    # ports:
+    #   - 9200:9200
+    #   - 9300:9300
     environment:
       - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
 
   kibana:
     container_name: kibana
-    image: kibana:6.7.0
+    image: kibana:6.7.1
     hostname: kibana
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
-    ports:
-      - 5601:5601
+    # ports:
+    #   - 5601:5601
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
+      SERVER_BASEPATH: /kibana
     depends_on:
       - elasticsearch
 
   logstash:
     container_name: logstash
-    image: logstash:6.7.0
+    image: logstash:6.7.1
     hostname: logstash
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/home/docker/elk/logstash/conf/logstash.conf:/usr/share/logstash/pipeline/logstash.conf"
     restart: unless-stopped
-    ports:
-      - 5043:5043
+    # ports:
+    #   - 5043:5043
+    environment:
+      - "LS_JAVA_OPTS=-Xms256m -Xmx256m"
     depends_on:
       - elasticsearch
       - kibana
 
   filebeat:
     container_name: filebeat
-    image: elastic/filebeat:6.7.0
+    image: elastic/filebeat:6.7.1
     hostname: filebeat
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
