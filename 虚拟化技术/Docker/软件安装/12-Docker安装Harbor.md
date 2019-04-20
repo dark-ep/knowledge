@@ -59,6 +59,40 @@
     ![第4步-1](images/12_4_1.png)<br>
     ![第4步-2](images/12_4_2.png)<br>   
 
+5.  验证上传下载镜像<br>
+    a. 登录授权<br>
+
+    ```命令
+    > docker login 127.0.0.1
+    ```
+
+    ![第5步-a](images/12_5_a_1.png)<br>
+
+    b. 镜像打包<br>
+
+    ```命令
+    > docker tag redis:latest 127.0.0.1/library/redis:latest
+    ```
+
+    ![第5步-b](images/12_5_b_1.png)<br>
+
+    c. 上传镜像(需要Harbor上有对应的项目)<br>
+
+    ```命令
+    > docker push 127.0.0.1/library/redis:latest
+    ```
+
+    ![第5步-c-1](images/12_5_c_1.png)<br>
+    ![第5步-c-2](images/12_5_c_2.png)<br>
+    ![第5步-c-3](images/12_5_c_3.png)<br>
+
+    d. 验证下载镜像<br>
+ 
+    ```命令
+    > docker rmi 127.0.0.1/library/redis:latest
+    > docker pull 127.0.0.1/library/redis:latest
+    ```
+
 [Harbor地址]: https://github.com/goharbor/harbor/releases
 
 [info]: /images/info.png
