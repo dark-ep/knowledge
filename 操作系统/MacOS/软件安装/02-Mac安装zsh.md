@@ -170,3 +170,5 @@
     # 在配置末增加
     source $HOME/.bash_profile
     ```
+
+    ![效果图](images/02_3_e_1.png)<br>    
