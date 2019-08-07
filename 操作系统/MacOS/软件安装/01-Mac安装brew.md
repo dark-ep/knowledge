@@ -25,6 +25,7 @@
     ```
 
 3.  使用命令
+
     a.  通用类
 
     | 命令                                     | 说明                   |
@@ -63,7 +64,7 @@
 
     > 更多命令使用查看文档：https://docs.brew.sh/Formula-Cookbook.html.
 
-4.  安装brew
+4.  卸载brew
 
     a.  打开终端，执行下面的命令。
 
@@ -77,5 +78,40 @@
     - xz
     - wget
     - lrzsz
+
+6.  替换源为中科大源
+
+    a.  替换brew.git
+
+    ```shell
+    cd "$(brew --repo)"
+    git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+    ```
+
+    b.  替换homebrew-core.git
+
+    ```shell
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+    cd ~
+    brew update
+    ```
+
+    c.  替换Homebrew Bottles源
+    > Homebrew是OS X系统的一款开源的包管理器。出于节省时间的考虑，Homebrew默认从Homebrew Bottles源中下载二进制代码包安装。Homebrew Bottles是Homebrew提供的二进制代码包，目前镜像站收录了以下仓库：<br>
+    > homebrew/homebrew-core<br>
+    > homebrew/homebrew-dupes<br>
+    > homebrew/homebrew-games<br>
+    > homebrew/homebrew-gui<br>
+    > homebrew/homebrew-python<br>
+    > homebrew/homebrew-php<br>
+    > homebrew/homebrew-science<br>
+    > homebrew/homebrew-versions<br>
+    > homebrew/homebrew-x11<br>
+
+    ```shell
+    echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.zshrc
+    source ~/.zshrc
+    ```
 
 [中文官网]: https://brew.sh/index_zh-cn
