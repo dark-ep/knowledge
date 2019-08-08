@@ -171,4 +171,19 @@
     source $HOME/.bash_profile
     ```
 
+    ```命令
+    brew install screenfetch
+    brew install coreutils
+    ```
+
+    ```命令
+    vim ~/.bash_profile
+    ```
+
+    ```内容
+    # 在配置末增加
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    alias readlink=greadlink
+    ```
+    
     ![效果图](images/02_3_e_1.png)<br>    
