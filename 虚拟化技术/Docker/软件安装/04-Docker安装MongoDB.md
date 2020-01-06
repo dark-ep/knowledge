@@ -10,7 +10,7 @@
 
     > ![info][info] [mongo说明地址][mongo地址]
 
-2.  创建Zookeeper宿主目录<br>
+2.  创建MongoDB宿主目录<br>
 
     >  mkdir -p /home/docker/mongo
 
